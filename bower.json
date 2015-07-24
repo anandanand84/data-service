@@ -1,0 +1,34 @@
+{
+  "name": "tlab-data-service",
+  "version": "0.0.0",
+  "authors": [
+    "anand.anand84@gmail.com"
+  ],
+  "description": "Stock Data(India Stocks) for traderslab.in",
+  "main": [".app/build/DataService-Browsified.js","./app/build/StockMessages.proto"],
+  "keywords": [
+    "Stock",
+    "Nifty",
+    "Websocket",
+    "Protocolbuffers",
+    "typescript"
+  ],
+  "license": "private",
+  "homepage": "traderslab.in",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "protobuf": "~4.0.0",
+    "q": "~2.0.2",
+    "closure-compiler": "http://dl.google.com/closure-compiler/compiler-latest.zip"
+  },
+  "ignoredDependencies": [
+    "long"
+  ]
+}
