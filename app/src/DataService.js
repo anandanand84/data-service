@@ -127,7 +127,6 @@ var Socket = (function () {
         this.sendMessage = function (data) {
             console.log(new Date().getTime() + " Message sent : " + data);
             if (isNode) {
-                this.websocket1.send(new Buffer(new Uint8Array(data)), { binary: true, mask: true });
             }
             else {
                 this.websocket1.send(data);
