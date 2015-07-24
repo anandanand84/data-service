@@ -62,11 +62,11 @@ gulp.task('compress', function() {
       fileName:'DataService-Minified.js',
       compilerFlags: {
         compilation_level: 'SIMPLE_OPTIMIZATIONS',
-        warning_level:'default'
+        warning_level:'quiet'
        }
     }))
     .pipe(gulp.dest('app/build/'));
 });
 
-// Basic usage 
+// Basic usage
 gulp.task('browserify-ts', shell.task(['browserify DataService.js --no-bundle-external -o DataService-Browsified.js'],{cwd:"app/build/"}));
