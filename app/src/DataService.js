@@ -57,9 +57,14 @@ var PubSub = (function () {
     PubSub._instance = null;
     return PubSub;
 })();
-var isNode = isNode || false;
+var isNode;
+var dcodeIO = dcodeIO || {};
+if (typeof exports !== 'undefined' && this.exports !== exports) {
+    WebSocket = require('ws');
+    dcodeIO.ProtoBuf = require("protobufjs");
+    isNode = true;
+}
 if (!isNode) {
-    var dcodeIO = dcodeIO || {};
     if (typeof dcodeIO === 'undefined' || !dcodeIO.ProtoBuf) {
         throw (new Error("ProtoBuf.js is not present. Please see www/index.html for manual setup instructions."));
     }
@@ -305,4 +310,5 @@ var DataService = (function () {
     DataService._instance = null;
     return DataService;
 })();
+exports.DataService = DataService;
 //# sourceMappingURL=DataService.js.map

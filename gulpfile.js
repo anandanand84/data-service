@@ -8,7 +8,7 @@ var protoUrl = 'http://traderslab.in:9010/proto/StockMessages.proto'
 
 var paths = {
   tscripts : { src : ['app/src/**/*.ts'],
-        dest : 'app/build' }
+        dest : './app/build' }
 };
 
 gulp.task('default', function(){
@@ -50,7 +50,8 @@ gulp.task('compile:typescript', function () {
   return gulp
   .src(paths.tscripts.src)
   .pipe(tsc({
-    emitError: true
+    emitError: true,
+    declaration:true
   }))
   .pipe(gulp.dest(paths.tscripts.dest));
 });

@@ -4,6 +4,7 @@
 /// <reference path="./ws/ws.d.ts" />
 /// <reference path="./StockMessages.d.ts" />
 
+
 class PubSub{
 
   private topics:any = {}
@@ -68,10 +69,15 @@ class PubSub{
   }
 }
 
-var isNode = isNode || false;
+var isNode;
+var dcodeIO:any = dcodeIO || {};
+if (typeof exports !== 'undefined' && this.exports !== exports) {
+  WebSocket = require('ws');
+  dcodeIO.ProtoBuf = require("protobufjs");
+  isNode = true;
+}
 
 if(!isNode){
-  var dcodeIO:any = dcodeIO || {};
   if (typeof dcodeIO === 'undefined' || !dcodeIO.ProtoBuf) {
     throw(new Error("ProtoBuf.js is not present. Please see www/index.html for manual setup instructions."));
   }
@@ -246,7 +252,7 @@ class Socket{
 };
 
 
-class DataService{
+export class DataService{
 
   private subscriptionProgressCreated:boolean = false;
 
