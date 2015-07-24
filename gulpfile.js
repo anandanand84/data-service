@@ -31,16 +31,16 @@ gulp.task('copy-proto', function() {
 // ** Running ** //
 
 gulp.task('run', shell.task([
-  'node DataService-Minified.js'
+  'node index.js'
 ],{cwd:'app/build/'}));
 // ** Watching ** //
 
 gulp.task('watch', function () {
-  gulp.watch(paths.tscripts.src, ['compile:typescript','browserify-ts']);
+  gulp.watch(paths.tscripts.src, ['compile:typescript']);
 });
 
 gulp.task('watchrun', function () {
-  gulp.watch(paths.tscripts.src, runseq('compile:typescript','browserify-ts','compress'));
+  gulp.watch(paths.tscripts.src, runseq('compile:typescript','compress'));
 });
 
 
@@ -56,10 +56,10 @@ gulp.task('compile:typescript', function () {
 });
 
 gulp.task('compress', function() {
-  return gulp.src('app/build/DataService-Browsified.js')
+  return gulp.src('app/build/DataService.js')
     .pipe(closureCompiler({
       compilerPath: 'bower_components/closure-compiler/compiler.jar',
-      fileName:'DataService-Minified.js',
+      fileName:'DataService.min.js',
       compilerFlags: {
         compilation_level: 'SIMPLE_OPTIMIZATIONS',
         warning_level:'quiet'
@@ -68,5 +68,5 @@ gulp.task('compress', function() {
     .pipe(gulp.dest('app/build/'));
 });
 
-// Basic usage
-gulp.task('browserify-ts', shell.task(['browserify DataService.js --no-bundle-external -o DataService-Browsified.js'],{cwd:"app/build/"}));
+// We are not developing for node and converting to web, so it is not necessary.
+/*gulp.task('browserify-ts', shell.task(['browserify DataService.js --no-bundle-external -o DataService-Browsified.js'],{cwd:"app/build/"}));*/

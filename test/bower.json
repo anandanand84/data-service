@@ -1,0 +1,26 @@
+{
+  "name": "demo",
+  "version": "0.0.3",
+  "authors": [
+    "anand.anand84@gmail.com"
+  ],
+  "description": "Sample for tlab-service",
+  "main": "demo.js",
+  "license": "private",
+  "homepage": "traderslab.in",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "protobuf": "~4.0.0",
+    "q":"1.0.1"
+  },
+  "ignoredDependencies": [
+    "long"
+  ]
+}

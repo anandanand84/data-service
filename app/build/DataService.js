@@ -1,10 +1,8 @@
+/// <reference path="./node/Node.d.ts" />
 /// <reference path="./q/Q.d.ts" />
 /// <reference path="./protobufjs/protobufjs.d.ts" />
 /// <reference path="./ws/ws.d.ts" />
 /// <reference path="./StockMessages.d.ts" />
-var ProtoBuf = require("protobufjs");
-var Q = require("q");
-var WebSocket = require('ws');
 var PubSub = (function () {
     function PubSub() {
         this.topics = {};
@@ -59,17 +57,14 @@ var PubSub = (function () {
     PubSub._instance = null;
     return PubSub;
 })();
-var isNode = false;
-if (typeof exports !== 'undefined' && this.exports !== exports) {
-    isNode = true;
-}
-else {
+var isNode = isNode || false;
+if (!isNode) {
     var dcodeIO = dcodeIO || {};
     if (typeof dcodeIO === 'undefined' || !dcodeIO.ProtoBuf) {
         throw (new Error("ProtoBuf.js is not present. Please see www/index.html for manual setup instructions."));
     }
 }
-var StockMessages = ProtoBuf.loadProtoFile("StockMessages.proto");
+var StockMessages = dcodeIO.ProtoBuf.loadProtoFile("StockMessages.proto");
 var Header = StockMessages.build("Header");
 var HeaderReader = StockMessages.build("HeaderReader");
 var BarDetails = StockMessages.build("BarDetails");
@@ -127,6 +122,7 @@ var Socket = (function () {
         this.sendMessage = function (data) {
             console.log(new Date().getTime() + " Message sent : " + data);
             if (isNode) {
+                this.websocket1.send(new Buffer(new Uint8Array(data)), { binary: true, mask: true });
             }
             else {
                 this.websocket1.send(data);
@@ -309,24 +305,3 @@ var DataService = (function () {
     DataService._instance = null;
     return DataService;
 })();
-var users = [];
-for (var i = 0; i < 1; i++) {
-    users.push(new DataService());
-}
-var id;
-users.forEach(function (user) {
-    user.id = setInterval(function () {
-        var data = {};
-        data.interval = 86400;
-        data.requiredBars = 500;
-        data.scrip = 'RELIANCE';
-        data.registrationId = "";
-        var startTime = new Date();
-        user.getChartData(data).then(function (resp) {
-            console.log("Total Time take is " + ((new Date()).getTime() - startTime.getTime()) / 1000);
-        }, function (error) {
-            console.error(error);
-        });
-    }, 500);
-});
-//# sourceMappingURL=DataService.js.map

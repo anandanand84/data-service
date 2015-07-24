@@ -1,11 +1,8 @@
+/// <reference path="./node/Node.d.ts" />
 /// <reference path="./q/Q.d.ts" />
 /// <reference path="./protobufjs/protobufjs.d.ts" />
 /// <reference path="./ws/ws.d.ts" />
 /// <reference path="./StockMessages.d.ts" />
-
-import ProtoBuf = require("protobufjs");
-import Q = require("q");
-import WebSocket = require('ws');
 
 class PubSub{
 
@@ -71,11 +68,9 @@ class PubSub{
   }
 }
 
+var isNode = isNode || false;
 
-var isNode = false;
-if (typeof exports !== 'undefined' && this.exports !== exports) {
-  isNode = true;
-} else {
+if(!isNode){
   var dcodeIO:any = dcodeIO || {};
   if (typeof dcodeIO === 'undefined' || !dcodeIO.ProtoBuf) {
     throw(new Error("ProtoBuf.js is not present. Please see www/index.html for manual setup instructions."));
@@ -83,7 +78,7 @@ if (typeof exports !== 'undefined' && this.exports !== exports) {
 }
 
 
-var StockMessages= ProtoBuf.loadProtoFile("StockMessages.proto");
+var StockMessages= dcodeIO.ProtoBuf.loadProtoFile("StockMessages.proto");
 
 var Header:any =StockMessages.build("Header");
 var HeaderReader:any =StockMessages.build("HeaderReader");
@@ -199,7 +194,7 @@ class Socket{
   private sendMessage = function(data:any){
     console.log(new Date().getTime()+" Message sent : "+data);
     if(isNode){
-      //this.websocket1.send(new Buffer(new Uint8Array(data)),{ binary: true,mask:true});
+      this.websocket1.send(new Buffer(new Uint8Array(data)),{ binary: true,mask:true});
     }else{
       this.websocket1.send(data);
     }
@@ -378,30 +373,4 @@ class DataService{
     return status;
   }
 }
-
-
-var users = [];
-
-for(var i=0;i<1;i++){
-  users.push(new DataService());
-}
-
-var id;
-
-users.forEach(function(user){
-
-  user.id = setInterval(function(){
-    var data:any = {};
-    data.interval = 86400;
-    data.requiredBars = 500;
-    data.scrip = 'RELIANCE';
-    data.registrationId = "";
-    var startTime = new Date();
-    user.getChartData(data).then(function (resp) {
-      console.log("Total Time take is "+((new Date()).getTime() - startTime.getTime())/1000 );
-    }, function (error) {
-      console.error(error);
-    });
-  },500);
-})
 

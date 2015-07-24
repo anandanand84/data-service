@@ -28,7 +28,7 @@
   ],
   "dependencies": {
     "protobuf": "~4.0.0",
-    "q": "~2.0.2",
+    "q": "1.0.1",
     "closure-compiler": "http://dl.google.com/closure-compiler/compiler-latest.zip"
   },
   "ignoredDependencies": [
