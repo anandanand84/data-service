@@ -1,7 +1,5 @@
-/// <reference path="./node/Node.d.ts" />
 /// <reference path="./q/Q.d.ts" />
 /// <reference path="./protobufjs/protobufjs.d.ts" />
-/// <reference path="./ws/ws.d.ts" />
 /// <reference path="./StockMessages.d.ts" />
 
 

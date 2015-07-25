@@ -1,7 +1,5 @@
-/// <reference path="../app/src/node/Node.d.ts" />
 /// <reference path="../app/src/q/Q.d.ts" />
 /// <reference path="../app/src/protobufjs/protobufjs.d.ts" />
-/// <reference path="../app/src/ws/ws.d.ts" />
 /// <reference path="../app/src/StockMessages.d.ts" />
 export declare class DataService {
     private subscriptionProgressCreated;
