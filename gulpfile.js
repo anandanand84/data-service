@@ -17,7 +17,8 @@ gulp.task('default', function(){
 
 gulp.task('update-proto',function(){
   download(protoUrl)
-    .pipe(gulp.dest("app/src/"));
+    .pipe(gulp.dest("app/src/"))
+    .pipe(gulp.dest(""));
 });
 
 gulp.task('generate-dts-proto',shell.task(['protoc -I=. --dts_out=. StockMessages.proto'],{cwd:'app/src/'}));
@@ -26,8 +27,8 @@ gulp.task('generate-dts-proto',shell.task(['protoc -I=. --dts_out=. StockMessage
 gulp.task('copy-proto', function() {
     gulp.src('app/src/StockMessages.proto')
    .pipe(gulp.dest('./app/build/'));
-   gulp.src('app/src/tlab-data-service.html')
-   .pipe(gulp.dest('./app/build/'));
+   gulp.src('app/src/data-service.html')
+   .pipe(gulp.dest(''));
 });
 
 // ** Running ** //
@@ -55,7 +56,8 @@ gulp.task('compile:typescript', function () {
     emitError: true,
     declaration:true
   }))
-  .pipe(gulp.dest(paths.tscripts.dest));
+  .pipe(gulp.dest(paths.tscripts.dest))
+  .pipe(gulp.dest(''));
 });
 
 gulp.task('compress', function() {
@@ -68,7 +70,7 @@ gulp.task('compress', function() {
         warning_level:'quiet'
        }
     }))
-    .pipe(gulp.dest('app/build/'));
+    .pipe(gulp.dest(''));
 });
 
 // We are not developing for node and converting to web, so it is not necessary.

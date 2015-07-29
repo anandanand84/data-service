@@ -6,8 +6,9 @@
   ],
   "description": "Stock Data(India Stocks) for traderslab.in",
   "main": [
-    "app/build/tlab-data-service.html",
-    "app/build/StockMessages.proto"
+    "data-service.html",
+    "DataService.min.js",
+    "StockMessages.proto"
   ],
   "keywords": [
     "Stock",
@@ -30,8 +31,5 @@
     "protobuf": "~4.0.0",
     "q": "1.0.1",
     "closure-compiler": "http://dl.google.com/closure-compiler/compiler-latest.zip"
-  },
-  "ignoredDependencies": [
-    "long"
-  ]
+  }
 }
