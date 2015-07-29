@@ -26,6 +26,8 @@ gulp.task('generate-dts-proto',shell.task(['protoc -I=. --dts_out=. StockMessage
 gulp.task('copy-proto', function() {
     gulp.src('app/src/StockMessages.proto')
    .pipe(gulp.dest('./app/build/'));
+   gulp.src('app/src/tlab-data-service.html')
+   .pipe(gulp.dest('./app/build/'));
 });
 
 // ** Running ** //

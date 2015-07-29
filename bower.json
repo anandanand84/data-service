@@ -6,7 +6,7 @@
   ],
   "description": "Stock Data(India Stocks) for traderslab.in",
   "main": [
-    "app/build/DataService.min.js",
+    "app/build/tlab-data-service.html",
     "app/build/StockMessages.proto"
   ],
   "keywords": [
