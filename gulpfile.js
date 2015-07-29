@@ -4,7 +4,7 @@ var shell  = require('gulp-shell');
 var runseq = require('run-sequence');
 var download = require("gulp-download");
 var closureCompiler = require('gulp-closure-compiler');
-var protoUrl = 'http://traderslab.in:9010/proto/StockMessages.proto'
+var protoUrl = 'http://traderslab.in/proto/StockMessages.proto'
 
 var paths = {
   tscripts : { src : ['app/src/**/*.ts'],

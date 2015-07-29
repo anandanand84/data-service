@@ -87,7 +87,7 @@ var Socket = (function () {
     function Socket(wsUri) {
         this.requestMap = {};
         this.eventsMap = {};
-        this.wsUri1 = "ws://traderslab.in:8484/iciciAutomation/websocket";
+        this.wsUri1 = "ws://traderslab.in/websocket";
         //private wsUri1 = "ws://traderslab.in:9010/websocket";
         //private wsUri1 = "ws://localhost:9091/iciciAutomation/websocket";
         this.websocket1 = new WebSocket(this.wsUri1);
