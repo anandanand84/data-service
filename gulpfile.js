@@ -53,6 +53,7 @@ gulp.task('compile:typescript', function () {
   return gulp
   .src(paths.tscripts.src)
   .pipe(tsc({
+    module:'commonjs',
     emitError: true,
     declaration:true
   }))

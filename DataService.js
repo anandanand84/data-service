@@ -308,4 +308,3 @@ var DataService = (function () {
     DataService._instance = null;
     return DataService;
 })();
-exports.DataService = DataService;

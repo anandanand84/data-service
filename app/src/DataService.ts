@@ -250,7 +250,7 @@ class Socket{
 };
 
 
-export class DataService{
+class DataService{
 
   private subscriptionProgressCreated:boolean = false;
 
